@@ -1,0 +1,33 @@
+// 1. Settings (Variables globales)
+@import 'assets/scss/1-settings/variables';
+
+// 2. Design Tokens (Tipografía y tokens visuales)
+@import 'assets/scss/2-design-tokens/typography';
+
+// 3. Tools (Mixins y utilidades Sass)
+@import 'assets/scss/3-tools/aspect-ratio';
+@import 'assets/scss/3-tools/breakpoints';
+@import 'assets/scss/3-tools/ellipsis';
+@import 'assets/scss/3-tools/flexbox';
+@import 'assets/scss/3-tools/fluid-type';
+@import 'assets/scss/3-tools/font-face';
+@import 'assets/scss/3-tools/notouch-hover';
+@import 'assets/scss/3-tools/nth-child';
+@import 'assets/scss/3-tools/transition';
+
+// 4. Generic (Normalización y resets)
+@import 'assets/scss/4-generic/normalize';
+@import 'assets/scss/4-generic/reset';
+
+// 5. Elements (Estilos base de elementos HTML)
+@import 'assets/scss/5-elements/buttons';
+
+// 6. Skeleton (Layouts y estructuras)
+@import 'assets/scss/6-skeleton/layouts';
+
+// 7. Components (Componentes de la aplicación)
+@import 'assets/scss/7-components/forms';
+
+// 8. Utilities & Themes (Sobrescrituras de Angular Material)
+@import 'assets/scss/8-utilities/material-overrides';
+@import 'assets/scss/8-utilities/custom-material-theme';
