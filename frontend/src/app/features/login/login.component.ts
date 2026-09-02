@@ -16,6 +16,15 @@ export class LoginComponent implements OnInit {
   errorMessage: string | null = null;
   hidePassword = true;
 
+  // Propiedad para el selector de idioma
+  selectedLanguage = 'ES';
+  languages = [
+    { code: 'ES', label: 'ES' },
+    { code: 'EN', label: 'EN' },
+    { code: 'FR', label: 'FR' },
+    { code: 'PT', label: 'PT' }
+  ];
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,

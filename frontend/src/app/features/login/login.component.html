@@ -5,58 +5,100 @@
   <title>Title</title>
 </head>
 <body>
-  <div class="login-container">
-    <mat-card class="login-card">
+  <div class="login-layout">
 
-      <div class="login-card__header">
-        <img src="assets/images/logos/Econocom.svg" alt="Econocom Logo" class="login-card__logo" />
-        <h1 class="login-card__title">Iniciar Sesión</h1>
-      </div>
+    <!-- Columna izquierda: Ilustración -->
+    <div class="login-layout__illustration">
+      <img src="assets/images/login.svg" alt="Login" class="login-layout__img" />
+    </div>
 
-      <mat-card-content class="login-card__content">
+    <!-- Columna derecha: Formulario y Contenido -->
+    <div class="login-layout__content">
 
-        <!-- Mensaje de error visual -->
-        <div *ngIf="errorMessage" class="login-card__error-banner">
+      <div class="login-box">
+        <!-- Logo realdooh -->
+        <div class="login-box__header">
+          <img src="assets/images/logos/Logo-RD.svg" alt="realdooh" class="login-box__logo" />
+          <p class="login-box__subtitle">Inicia sesión en tu cuenta</p>
+        </div>
+
+        <!-- Banner de error -->
+        <div *ngIf="errorMessage" class="login-box__error">
           {{ errorMessage }}
         </div>
 
+        <!-- Formulario -->
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
 
-          <!-- Campo Correo Electrónico -->
-          <mat-form-field appearance="outline" class="login-form__field">
-            <mat-label>Correo electrónico</mat-label>
-            <input matInput formControlName="email" type="email" placeholder="ejemplo@econocom.com" />
-            <mat-icon matSuffix>email</mat-icon>
-            <mat-error *ngIf="f['email'].hasError('required')">
-              El correo electrónico es obligatorio.
-            </mat-error>
-            <mat-error *ngIf="f['email'].hasError('email')">
-              Introduce un formato de correo válido.
-            </mat-error>
-          </mat-form-field>
+          <!-- Campo Correo -->
+          <div class="login-form__group">
+            <input
+              type="email"
+              formControlName="email"
+              placeholder="Correo electrónico"
+              class="login-form__input"
+              [class.login-form__input--error]="f['email'].touched && f['email'].invalid"
+            />
+          </div>
 
           <!-- Campo Contraseña -->
-          <mat-form-field appearance="outline" class="login-form__field">
-            <mat-label>Contraseña</mat-label>
-            <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" />
-            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" [attr.aria-label]="'Ocultar contraseña'">
+          <div class="login-form__group login-form__group--password">
+            <input
+              [type]="hidePassword ? 'password' : 'text'"
+              formControlName="password"
+              placeholder="Contraseña"
+              class="login-form__input"
+              [class.login-form__input--error]="f['password'].touched && f['password'].invalid"
+            />
+            <button type="button" class="login-form__eye-btn" (click)="hidePassword = !hidePassword">
               <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
-            <mat-error *ngIf="f['password'].hasError('required')">
-              La contraseña es obligatoria.
-            </mat-error>
-          </mat-form-field>
+          </div>
 
-          <!-- Botón de Envío -->
-          <button mat-raised-button color="primary" type="submit" class="login-form__submit-btn" [disabled]="isLoading">
-            <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+          <!-- Botón ENTRAR principal -->
+          <button type="submit" class="btn btn--primary login-form__submit" [disabled]="isLoading">
             <span *ngIf="!isLoading">ENTRAR</span>
+            <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
           </button>
 
         </form>
-      </mat-card-content>
 
-    </mat-card>
+        <!-- Bloque SSO (Otras formas de acceso) -->
+        <div class="login-sso">
+          <span class="login-sso__label">Otras formas de acceso:</span>
+          <button type="button" class="btn btn--sso login-sso__btn">
+            ENTRAR CON DECATHLON
+          </button>
+        </div>
+
+        <!-- Registro -->
+        <div class="login-box__footer">
+          ¿No tienes cuenta? <a href="#" class="login-box__link">Regístrate</a>
+        </div>
+
+      </div>
+
+      <!-- Pie inferior (Idioma + Logo Econocom) -->
+      <div class="login-layout__footer">
+        <div class="login-layout__lang-selector">
+
+          <!-- Icono de bola del mundo usando Material Icons -->
+          <mat-icon class="login-layout__world-icon">language</mat-icon>
+
+          <span class="login-layout__lang-prefix">IDIOMA:</span>
+
+          <mat-select [(value)]="selectedLanguage" class="login-layout__select" panelClass="lang-select-panel">
+            <mat-option *ngFor="let lang of languages" [value]="lang.code">
+              {{ lang.label }}
+            </mat-option>
+          </mat-select>
+
+        </div>
+        <img src="assets/images/logos/Econocom.svg" alt="econocom" class="login-layout__econocom-logo" />
+      </div>
+
+    </div>
+
   </div>
 </body>
 </html>

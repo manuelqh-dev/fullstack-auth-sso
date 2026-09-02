@@ -35,3 +35,34 @@
 // Sobrescrituras y tema global de Angular Material
 @import 'src/assets/scss/material-overrides';
 @import 'src/assets/scss/custom-material-theme';
+
+/* Estilos globales para el panel desplegable de idioma */
+.lang-select-panel {
+  min-width: 110px !important; //  contenedor flotante más ancho
+  background-color: #ffffff !important;
+  border-radius: 6px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15) !important;
+
+  .mat-mdc-option {
+    min-height: 44px !important; // Aumenta la altura de cada opción para facilitar el clic
+    padding: 0 16px !important;
+
+    .mdc-list-item__primary-text {
+      font-size: 0.95rem !important; // Aumenta el tamaño de la letra (ES, EN, FR)
+      font-weight: 600 !important;
+      color: #333333 !important;
+    }
+
+    &:hover {
+      background-color: #f5f5f5 !important;
+    }
+
+    &.mdc-list-item--selected {
+      background-color: #fff3ec !important;
+
+      .mdc-list-item__primary-text {
+        color: #ff6600 !important;
+      }
+    }
+  }
+}
