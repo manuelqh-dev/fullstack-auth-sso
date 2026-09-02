@@ -11,6 +11,7 @@ import { LoginRequest } from '../../core/models';
 })
 export class LoginComponent implements OnInit {
 
+  successMessage: string | null = null;
   loginForm!: FormGroup;
   isLoading = false;
   errorMessage: string | null = null;
@@ -56,13 +57,16 @@ export class LoginComponent implements OnInit {
    * Maneja el envío del formulario de autenticación.
    */
   onSubmit(): void {
+
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+      this.errorMessage = 'Introduce un correo electrónico válido (ejemplo@dominio.com).';
       return;
     }
 
     this.isLoading = true;
     this.errorMessage = null;
+    this.successMessage = null; // Limpiamos mensajes anteriores
 
     const credentials: LoginRequest = {
       username: this.loginForm.value.email,
@@ -72,13 +76,14 @@ export class LoginComponent implements OnInit {
     this.authService.login(credentials).subscribe({
       next: (response) => {
         this.isLoading = false;
+        this.successMessage = '¡Inicio de sesión correcto!'; // Banner verde
         console.log('Autenticación exitosa. Token recibido:', response.token);
-        // Redirección posterior o acción deseada tras autenticarse
       },
       error: (error) => {
         this.isLoading = false;
+        this.successMessage = null;
         if (error.status === 401) {
-          this.errorMessage = 'Credenciales inválidas. Comprueba tu correo o contraseña.';
+          this.errorMessage = 'Credenciales inválidas. Comprueba tu correo o contraseña.'; // Banner rojo
         } else {
           this.errorMessage = 'Error al conectar con el servidor. Inténtalo de nuevo.';
         }

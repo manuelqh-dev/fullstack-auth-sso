@@ -22,9 +22,14 @@
           <p class="login-box__subtitle">Inicia sesión en tu cuenta</p>
         </div>
 
-        <!-- Banner de error -->
+        <!-- Banner de error (Rojo) -->
         <div *ngIf="errorMessage" class="login-box__error">
           {{ errorMessage }}
+        </div>
+
+        <!-- Banner de éxito (Verde) -->
+        <div *ngIf="successMessage" class="login-box__success">
+          {{ successMessage }}
         </div>
 
         <!-- Formulario -->

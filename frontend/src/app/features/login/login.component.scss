@@ -128,7 +128,17 @@
     margin-bottom: 1.25rem;
     text-align: center;
   }
-
+  &__success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #c8e6c9;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    font-weight: 500;
+  }
   &__footer {
     text-align: center;
     margin-top: 2rem;
