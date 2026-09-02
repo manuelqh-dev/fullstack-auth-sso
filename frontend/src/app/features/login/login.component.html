@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div class="login-container">
+    <mat-card class="login-card">
+
+      <div class="login-card__header">
+        <img src="assets/images/logos/Econocom.svg" alt="Econocom Logo" class="login-card__logo" />
+        <h1 class="login-card__title">Iniciar Sesión</h1>
+      </div>
+
+      <mat-card-content class="login-card__content">
+
+        <!-- Mensaje de error visual -->
+        <div *ngIf="errorMessage" class="login-card__error-banner">
+          {{ errorMessage }}
+        </div>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+
+          <!-- Campo Correo Electrónico -->
+          <mat-form-field appearance="outline" class="login-form__field">
+            <mat-label>Correo electrónico</mat-label>
+            <input matInput formControlName="email" type="email" placeholder="ejemplo@econocom.com" />
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="f['email'].hasError('required')">
+              El correo electrónico es obligatorio.
+            </mat-error>
+            <mat-error *ngIf="f['email'].hasError('email')">
+              Introduce un formato de correo válido.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Campo Contraseña -->
+          <mat-form-field appearance="outline" class="login-form__field">
+            <mat-label>Contraseña</mat-label>
+            <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" />
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" [attr.aria-label]="'Ocultar contraseña'">
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="f['password'].hasError('required')">
+              La contraseña es obligatoria.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Botón de Envío -->
+          <button mat-raised-button color="primary" type="submit" class="login-form__submit-btn" [disabled]="isLoading">
+            <mat-spinner diameter="20" *ngIf="isLoading"></mat-spinner>
+            <span *ngIf="!isLoading">ENTRAR</span>
+          </button>
+
+        </form>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</body>
+</html>

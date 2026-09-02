@@ -20,14 +20,14 @@ public class AuthControllerTest {
 
     @Test
     public void shouldReturnTokenWhenCredentialsAreValid() throws Exception {
-        String loginPayload = "{\"username\":\"admin\",\"password\":\"admin123\"}";
+        String loginPayload = "{\"username\":\"admin@econocom.com\",\"password\":\"admin123\"}";
 
         mockMvc.perform(post("/api/auth/login")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(loginPayload))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.token").exists())
-                .andExpect(jsonPath("$.username").value("admin"));
+                .andExpect(jsonPath("$.username").value("admin@econocom.com"));
     }
 
     @Test

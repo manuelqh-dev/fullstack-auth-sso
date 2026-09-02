@@ -33,8 +33,8 @@ public class AuthServiceImpl implements AuthService {
 
     private boolean isValidCredential(String username, String password) {
         // Acepta credenciales de prueba predefinidas
-        return ("admin".equals(username) && "admin123".equals(password)) ||
-                ("user".equals(username) && "user123".equals(password));
+        return ("admin@econocom.com".equals(username) && "admin123".equals(password)) ||
+                ("user@econocom.com".equals(username) && "user123".equals(password));
     }
 
 }
