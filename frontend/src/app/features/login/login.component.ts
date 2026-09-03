@@ -90,4 +90,24 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
+  /**
+   * Inicia el proceso de autenticación mediante el proveedor SSO (Decathlon).
+   * Obtiene la URL de redirección del backend y redirige al navegador.
+   */
+  onSsoLogin(): void {
+    this.isLoading = true;
+    this.errorMessage = null;
+
+    this.authService.initiateSso().subscribe({
+      next: (response) => {
+        // Redirección del navegador a la URL que simula el proveedor SSO
+        window.location.href = response.redirectUrl;
+      },
+      error: () => {
+        this.isLoading = false;
+        this.errorMessage = 'No se pudo iniciar la autenticación SSO. Inténtalo de nuevo.';
+      }
+    });
+  }
 }

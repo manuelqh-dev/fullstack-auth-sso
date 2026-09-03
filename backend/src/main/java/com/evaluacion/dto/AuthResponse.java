@@ -17,4 +17,5 @@ public class AuthResponse {
         this.token = token;
         this.username = username;
     }
+
 }

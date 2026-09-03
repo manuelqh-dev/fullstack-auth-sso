@@ -37,4 +37,13 @@ public class AuthServiceImpl implements AuthService {
                 ("user@econocom.com".equals(username) && "user123".equals(password));
     }
 
+    @Override
+    public AuthResponse authenticateSsoUser(String username) {
+        // Reutilizamos el proveedor de JWT existente para generar el token
+        String token = jwtUtils.generateJwtToken(username);
+
+        // Devolvemos el mismo DTO AuthResponse que usa el login tradicional
+        return new AuthResponse(token, username);
+    }
+
 }

@@ -67,4 +67,24 @@ export class AuthService {
   public logout(): void {
     sessionStorage.clear();
   }
+
+  /**
+   * Solicita al backend el inicio del flujo de autenticación SSO.
+   *
+   * @returns Observable con la URL de redirección devuelta por el proveedor simulado.
+   */
+  initiateSso(): Observable<{ redirectUrl: string }> {
+    return this.http.get<{ redirectUrl: string }>(`${this.apiUrl}/sso`);
+  }
+
+  /**
+   * Envía el código de autorización simulado al backend para su validación y la posterior generación del JWT.
+   *
+   * @param code Código de autorización recibido en los parámetros de la URL.
+   * @returns Observable con la respuesta de autenticación (Token JWT).
+   */
+  handleSsoCallback(code: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/sso/callback`, { code });
+  }
+
 }

@@ -71,7 +71,7 @@
         <!-- Bloque SSO (Otras formas de acceso) -->
         <div class="login-sso">
           <span class="login-sso__label">Otras formas de acceso:</span>
-          <button type="button" class="btn btn--sso login-sso__btn">
+          <button type="button" class="btn btn--sso login-sso__btn" (click)="onSsoLogin()" [disabled]="isLoading">
             ENTRAR CON DECATHLON
           </button>
         </div>

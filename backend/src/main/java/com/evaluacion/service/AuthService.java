@@ -12,4 +12,12 @@ public interface AuthService {
      * @return AuthResponse DTO que contiene el token JWT y la información del usuario.
      */
     AuthResponse authenticate(LoginRequest loginRequest);
+
+    /**
+     * Genera un token JWT para un usuario autenticado mediante el proveedor SSO.
+     *
+     * @param username Correo o identificador del usuario autenticado por SSO.
+     * @return AuthResponse DTO que contiene el token JWT generado.
+     */
+    AuthResponse authenticateSsoUser(String username);
 }
